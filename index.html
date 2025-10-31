@@ -15,6 +15,7 @@ body {
   color: #fff;
   text-align: center;
   position: relative;
+  min-height: 100vh;
 }
 
 /* === HEADER === */
@@ -24,22 +25,48 @@ header {
   z-index: 2;
 }
 
+header img {
+  width: 120px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
 h1 {
   font-size: 3em;
   margin-bottom: 0;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: #ffc6dc;
   margin-top: 5px;
 }
 
+/* === COPYABLE IP BOX === */
+.ip-box {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 25px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 30px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.ip-box:hover {
+  background: rgba(255,255,255,0.45);
+  transform: scale(1.05);
+}
+
+/* === TABS === */
 .tabs {
   display: flex;
   justify-content: center;
   margin-top: 30px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .tab {
@@ -72,37 +99,65 @@ section.active {
   display: block;
 }
 
-<!-- Team Roles -->
-<section id="roles" class="active">
-  <div class="roles">
-    <div class="role"><strong>Ahmed ★ Blaze</strong><br>Co-Owner — Creative Leadership</div>
-    <div class="role"><strong>GAMER ★ AFFAN</strong><br>Owner — Server Foundation & Direction</div>
-    <div class="role"><strong>CAPTAIN ★ RAFAY</strong><br>Backbone of SMP 💪</div>
-    <div class="role"><strong>FireX ★ Blaze</strong><br>Manager — Events & Player Support</div>
-    <div class="role"><strong>🌊 Water Hashira</strong><br>Admin — Experienced Support Staff</div>
-  </div>
-</section>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-<!-- Features -->
-<section id="features">
-  <div class="features">
-    <div class="feature">🌐 Online 24/7</div>
-    <div class="feature">🛡️ Staff Support Available</div>
-    <div class="feature">⚔️ Thrilling Adventure</div>
-    <div class="feature">🧠 Team Strategy & Grind</div>
-    <div class="feature">🎁 Events & Rewards</div>
-  </div>
-</section>
+/* === ROLES === */
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.role {
+  background: rgba(255,255,255,0.25);
+  padding: 20px;
+  border-radius: 20px;
+  width: 220px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.role:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.05);
+}
+
+/* === FEATURES === */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.feature {
+  background: rgba(255,255,255,0.25);
+  padding: 25px 35px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 1em;
+  transition: 0.3s;
+}
+.feature:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.03);
+}
+
 /* === RULES === */
 .rules {
   max-width: 800px;
   margin: 0 auto;
   text-align: left;
-  color: #2b2b2b;
+  color: #1f1f1f;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.45);
   padding: 30px;
   border-radius: 25px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
 .rules p {
@@ -149,36 +204,33 @@ footer {
   opacity: 0.8;
 }
 
-footer a {
-  color: #ffc6dc;
-  text-decoration: none;
-}
-
-/* === PARTICLE BACKGROUND === */
-.particle {
+/* === CRYSTAL PARTICLES === */
+.crystal {
   position: absolute;
-  background: rgba(255, 182, 193, 0.6);
-  border-radius: 50%;
-  animation: float 10s infinite ease-in-out;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 20%;
+  transform: rotate(45deg);
+  box-shadow: 0 0 15px rgba(173,216,230,0.8);
+  animation: drift linear infinite;
+  opacity: 0.9;
+  z-index: 1;
 }
 
-@keyframes float {
-  0% { transform: translateY(0) scale(1); opacity: 0.8; }
-  50% { transform: translateY(-40px) scale(1.2); opacity: 0.5; }
-  100% { transform: translateY(0) scale(1); opacity: 0.8; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes drift {
+  0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(225deg); opacity: 0; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
+  <img src="Diama logo.png" alt="Diama SMP Logo" />
   <h1>Diama SMP</h1>
-  <h2><a href="https://discord.gg/2UVgQdTjRZ" style="text-decoration:none; color:#ffc6dc;">play.diamasmp.fun:25569</a></h2>
+  <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
 
   <div class="tabs">
     <div class="tab active" onclick="showSection('roles', this)">Team Roles</div>
@@ -235,25 +287,33 @@ footer a {
 
 <footer>Made by — <strong>CookieDevil</strong></footer>
 
-<!-- PARTICLES -->
+<!-- === SCRIPT === -->
 <script>
-for (let i = 0; i < 30; i++) {
-  const particle = document.createElement("div");
-  particle.classList.add("particle");
-  const size = Math.random() * 8 + 3;
-  particle.style.width = size + "px";
-  particle.style.height = size + "px";
-  particle.style.left = Math.random() * 100 + "vw";
-  particle.style.top = Math.random() * 100 + "vh";
-  particle.style.animationDuration = (8 + Math.random() * 5) + "s";
-  document.body.appendChild(particle);
+// Copy IP
+function copyIP() {
+  navigator.clipboard.writeText("play.diamasmp.fun:25569");
+  alert("✅ IP copied to clipboard!");
 }
 
+// Tab switch
 function showSection(id, tab) {
   document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
   tab.classList.add("active");
+}
+
+// Create crystal particles
+for (let i = 0; i < 35; i++) {
+  const crystal = document.createElement("div");
+  crystal.classList.add("crystal");
+  const size = Math.random() * 8 + 6;
+  crystal.style.width = size + "px";
+  crystal.style.height = size + "px";
+  crystal.style.left = Math.random() * 100 + "vw";
+  crystal.style.animationDuration = (6 + Math.random() * 6) + "s";
+  crystal.style.animationDelay = Math.random() * 4 + "s";
+  document.body.appendChild(crystal);
 }
 </script>
 </body>
