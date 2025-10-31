@@ -1,320 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Diama SMP Portal</title>
-<style>
-/* === GLOBAL === */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #7ec8e3, #4aa3c3);
-  background-attachment: fixed;
-  overflow-x: hidden;
-  color: #fff;
-  text-align: center;
-  position: relative;
-  min-height: 100vh;
-}
-
-/* === HEADER === */
-header {
-  padding: 40px 20px 10px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-header img {
-  width: 120px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.6);
-}
-
-h1 {
-  font-size: 3em;
-  margin-bottom: 0;
-  text-shadow: 0 0 10px rgba(255,255,255,0.4);
-}
-
-h2 {
-  font-size: 1.2em;
-  color: #ffc6dc;
-  margin-top: 5px;
-}
-
-/* === COPYABLE IP BOX === */
-.ip-box {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 25px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 30px;
-  font-weight: 600;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.ip-box:hover {
-  background: rgba(255,255,255,0.45);
-  transform: scale(1.05);
-}
-
-/* === TABS === */
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.tab {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 12px 28px;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  color: #fff;
-}
-
-.tab:hover {
-  background: rgba(255, 255, 255, 0.45);
-}
-
-.tab.active {
-  background: rgba(255, 192, 203, 0.9);
-  color: #000;
-}
-
-/* === CONTENT SECTIONS === */
-section {
-  display: none;
-  margin-top: 40px;
-  animation: fadeIn 0.6s ease;
-}
-
-section.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === ROLES === */
-.roles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.role {
-  background: rgba(255,255,255,0.25);
-  padding: 20px;
-  border-radius: 20px;
-  width: 220px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-.role:hover {
-  background: rgba(255,255,255,0.4);
-  transform: scale(1.05);
-}
-
-/* === FEATURES === */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.feature {
-  background: rgba(255,255,255,0.25);
-  padding: 25px 35px;
-  border-radius: 25px;
-  font-weight: 500;
-  font-size: 1em;
-  transition: 0.3s;
-}
-.feature:hover {
-  background: rgba(255,255,255,0.4);
-  transform: scale(1.03);
-}
-
-/* === RULES === */
-.rules {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: left;
-  color: #1f1f1f;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.45);
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.3);
-}
-
-.rules p {
-  margin: 15px 0;
-  font-size: 1.05em;
-}
-
-/* === REVIEWS === */
-.reviews {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  justify-items: center;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.review {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 25px 35px;
-  border-radius: 25px;
-  max-width: 300px;
-  font-size: 0.95em;
-  font-weight: 500;
-  text-align: left;
-  line-height: 1.5;
-}
-
-.review.center {
-  grid-column: span 3;
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1.05em;
-}
-
-/* === FOOTER === */
-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 15px;
-  font-size: 0.9em;
-  color: #fff;
-  opacity: 0.8;
-}
-
-/* === CRYSTAL PARTICLES === */
-.crystal {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 20%;
-  transform: rotate(45deg);
-  box-shadow: 0 0 15px rgba(173,216,230,0.8);
-  animation: drift linear infinite;
-  opacity: 0.9;
-  z-index: 1;
-}
-
-@keyframes drift {
-  0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
-  100% { transform: translateY(110vh) rotate(225deg); opacity: 0; }
-}
 </style>
 </head>
-
 <body>
 
-<header>
-  <img src="Diama logo.png" alt="Diama SMP Logo" />
-  <h1>Diama SMP</h1>
-  <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
+  <header>
+    <img src="diama-logo.png" alt="Diama SMP Logo" />
+    <h1>Diama SMP</h1>
+    <p>20+ active players • 24/7 PaperMC • Version 1.21.6</p>
+    <div class="server-ip">
+      <span id="ipText">play.diamasmp.fun:25569</span>
+      <button onclick="copyIP()">Copy IP</button>
+    </div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showSection('roles', this)">Team Roles</div>
-    <div class="tab" onclick="showSection('features', this)">Features</div>
-    <div class="tab" onclick="showSection('rules', this)">Rules</div>
-    <div class="tab" onclick="showSection('reviews', this)">Crew Reviews</div>
-  </div>
-</header>
+    <nav>
+      <button class="tab active" onclick="showSection('roles', this)">Team Roles</button>
+      <button class="tab" onclick="showSection('features', this)">Features</button>
+      <button class="tab" onclick="showSection('rules', this)">Rules</button>
+      <button class="tab" onclick="showSection('reviews', this)">Crew Reviews</button>
+    </nav>
+  </header>
 
-<!-- Team Roles -->
-<section id="roles" class="active">
-  <div class="roles">
-    <div class="role"><strong>Ahmed ★ Blaze</strong><br>Co-Owner — Creative Leadership</div>
-    <div class="role"><strong>GAMER ★ AFFAN</strong><br>Owner — Server Foundation & Direction</div>
-    <div class="role"><strong>CAPTAIN ★ RAFAY</strong><br>Backbone of SMP 💪</div>
-    <div class="role"><strong>FireX ★ Blaze</strong><br>Manager — Events & Player Support</div>
-    <div class="role"><strong>🌊 Water Hashira</strong><br>Admin — Experienced Support Staff</div>
-  </div>
-</section>
+  <!-- Team Roles -->
+  <section id="roles" class="active">
+    <h2>Team Roles</h2>
+    <div class="card-container">
+      <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative leadership</p></div>
+      <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
+      <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Backbone of SMP 💪</p></div>
+    </div>
+    <div class="card-container">
+      <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
+      <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
+    </div>
+  </section>
 
-<!-- Features -->
-<section id="features">
-  <div class="features">
-    <div class="feature">🌐 Online 24/7</div>
-    <div class="feature">🛡️ Staff Support Available</div>
-    <div class="feature">⚔️ Thrilling Adventure</div>
-    <div class="feature">🧠 Team Strategy & Grind</div>
-    <div class="feature">🎁 Events & Rewards</div>
-  </div>
-</section>
+  <!-- Features -->
+  <section id="features">
+    <h2>Server Features</h2>
+    <div class="features-grid">
+      <div>🌍 Online 24/7</div>
+      <div>🛡️ Staff Support Available</div>
+      <div>⚔️ Thrilling Adventure</div>
+      <div>🧠 Team Strategy & Grind</div>
+      <div>🎁 Events & Rewards</div>
+    </div>
+  </section>
 
-<!-- Rules -->
-<section id="rules">
-  <div class="rules">
-    <p>✅ Respect everyone — abuse or hate speech will not be tolerated.</p>
-    <p>❌ No hacks, exploits or dupes. Evidence-based bans.</p>
-    <p>🏠 No spawn killing or destructive griefing.</p>
-    <p>⚔️ PvP allowed — avoid unfair teaming in solo events.</p>
-    <p>💬 Keep chat safe — no NSFW, doxxing, or targeted harassment.</p>
-    <p>📛 Follow staff instructions. Appeals handled in Discord.</p>
-  </div>
-</section>
+  <!-- Rules -->
+  <section id="rules">
+    <h2>Server Rules ⬇️</h2>
+    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;color:#ff8ecf;font-weight:600;">
+      <p>✅ <strong>Respect everyone</strong> — abuse or hate speech will not be tolerated.</p>
+      <p>❌ <strong>No hacks, exploits or dupes.</strong> Evidence-based bans.</p>
+      <p>🏠 <strong>No spawn killing or destructive griefing.</strong></p>
+      <p>⚔️ <strong>PvP allowed</strong> — avoid unfair teaming in solo events.</p>
+      <p>💬 <strong>Keep chat safe</strong> — no NSFW, doxxing, or targeted harassment.</p>
+      <p>📛 <strong>Follow staff instructions.</strong> Appeals handled in Discord.</p>
+    </div>
+  </section>
 
-<!-- Crew Reviews -->
-<section id="reviews">
-  <div class="reviews">
-    <div class="review"><strong>Bhalutenx:</strong> The ping is low, making exploration smooth and fun. Perfect for survival and chill sessions with friends!</div>
-    <div class="review"><strong>CookieDevil:</strong> So much to enjoy! The community is friendly, the staff is supportive, and the SMP always feels alive with new adventures.</div>
-    <div class="review"><strong>Itachi:</strong> Shardex SMP might be bigger, but Diama has a cozy vibe and great players. The events are awesome too!</div>
-    <div class="review center"><strong>Captain Rafay:</strong> Diama SMP is everything a player could ask for — an active world, loyal friends, and endless fun. From creative building to competitive PvP, every moment feels worth it. The staff keeps the vibes positive and fair. It’s not just a server, it’s a true Minecraft family!</div>
-    <div class="review"><strong>DiedGV:</strong> What I love here is the honesty among players. Everyone grinds together, competes fairly, and it feels like a family.</div>
-  </div>
-</section>
+  <!-- Crew Reviews -->
+  <section id="reviews">
+    <h2>Crew Reviews 💬</h2>
+    <div class="reviews">
+      <p><strong>Bhalutenx:</strong> The server runs with impressively low ping — every adventure feels smooth, and the world is so fun to explore!</p>
+      <p><strong>CookieDevil:</strong> There’s just too much to enjoy! Amazing community, supportive staff, and endless adventures — truly a place that feels like home for Minecraft lovers.</p>
+      <p><strong>Itachi:</strong> Shardex may be strong, but Diama SMP’s creativity, teamwork, and fairness make it hard to beat. It’s a battle of the best!</p>
+      <p><strong>DiedGV:</strong> My friends here are honest, dedicated, and loyal — that’s what keeps me coming back to Diama SMP every day.</p>
+    </div>
+  </section>
 
-<footer>Made by — <strong>CookieDevil</strong></footer>
+  <footer>
+    <a href="https://discord.gg/xKUUnA3z6Y" class="discord">Join Our Discord</a>
+  </footer>
 
-<!-- === SCRIPT === -->
-<script>
-// Copy IP
-function copyIP() {
-  navigator.clipboard.writeText("play.diamasmp.fun:25569");
-  alert("✅ IP copied to clipboard!");
-}
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
 
-// Tab switch
-function showSection(id, tab) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  tab.classList.add("active");
-}
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
 
-// Create crystal particles
-for (let i = 0; i < 35; i++) {
-  const crystal = document.createElement("div");
-  crystal.classList.add("crystal");
-  const size = Math.random() * 8 + 6;
-  crystal.style.width = size + "px";
-  crystal.style.height = size + "px";
-  crystal.style.left = Math.random() * 100 + "vw";
-  crystal.style.animationDuration = (6 + Math.random() * 6) + "s";
-  crystal.style.animationDelay = Math.random() * 4 + "s";
-  document.body.appendChild(crystal);
-}
-</script>
+    function copyIP() {
+      navigator.clipboard.writeText("play.diamasmp.fun:25569");
+      alert("Server IP copied!");
+    }
+  </script>
+
 </body>
 </html>
