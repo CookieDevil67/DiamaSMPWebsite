@@ -1,287 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diama SMP Portal</title>
-  <style>
-    /* === GLOBAL === */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #6bbfdc, #2c7a93);
-      color: white;
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-      height: 100vh;
-    }
-
-    /* === FLOATING PETALS === */
-    .petal {
-      position: absolute;
-      background-color: rgba(255, 182, 193, 0.9);
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: fall 10s linear infinite;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10px) translateX(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) translateX(30px);
-        opacity: 0;
-      }
-    }
-
-    h1 {
-      font-size: 3em;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-      margin-top: 40px;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      margin-top: 15px;
-      color: #ffdde6;
-    }
-
-    /* === NAV TABS === */
-    .tabs {
-      margin-top: 30px;
-    }
-
-    .tab {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 20px;
-      margin: 0 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .tab:hover, .tab.active {
-      background: rgba(255, 192, 203, 0.6);
-      color: #2b2b2b;
-      font-weight: 600;
-      transform: scale(1.05);
-    }
-
-    /* === CONTENT SECTIONS === */
-    .section {
-      display: none;
-      margin-top: 30px;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* === TEAM ROLES === */
-    .roles-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      width: 230px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    /* === FEATURES === */
-    .feature {
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px auto;
-      padding: 10px 15px;
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-
-    /* === RULES === */
-    .rules {
-      color: pink;
-      font-weight: 600;
-      width: 400px;
-      margin: 20px auto;
-      text-align: left;
-    }
-
-    /* === CREW REVIEWS === */
-    .review {
-      background: rgba(255, 255, 255, 0.1);
-      margin: 10px auto;
-      width: 400px;
-      padding: 15px;
-      border-radius: 15px;
-    }
-
-    /* === DISCORD BUTTON === */
-    .discord-button {
-      position: fixed;
-      bottom: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #5865F2, #7289DA);
-      padding: 12px 25px;
-      border-radius: 30px;
-      box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-
-    .discord-button:hover {
-      transform: translateX(-50%) scale(1.05);
-      box-shadow: 0 0 25px rgba(88, 101, 242, 0.8);
-    }
-
-    .discord-button a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    /* === FOOTER === */
-    .made-by {
-      position: fixed;
-      bottom: 15px;
-      left: 20px;
-      font-size: 14px;
-      color: #ffe4ec;
-      opacity: 0.8;
-    }
-
-    .made-by span {
-      font-weight: 600;
-      color: #ffb6d5;
-    }
-
-    .made-by:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-  </style>
+</style>
 </head>
 <body>
-  <h1>Diama SMP</h1>
-  <h2>play.diamasmp.fun:25569</h2>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showSection('roles', this)">Team Roles</div>
-    <div class="tab" onclick="showSection('features', this)">Features</div>
-    <div class="tab" onclick="showSection('rules', this)">Rules</div>
-    <div class="tab" onclick="showSection('reviews', this)">Crew Reviews</div>
-  </div>
-
-  <!-- === TEAM ROLES === -->
-  <div id="roles" class="section active">
-    <div class="roles-grid">
-      <div class="card">
-        <h3>Ahmed | Blaze</h3>
-        <p>Co-Owner — Creative Leadership</p>
-      </div>
-      <div class="card">
-        <h3>GAMER ★ AFFAN</h3>
-        <p>Owner — Server Foundation & Direction</p>
-      </div>
-      <div class="card">
-        <h3>CAPTAIN ★ RAFAY</h3>
-        <p>Backbone of SMP 💪</p>
-      </div>
-      <div class="card">
-        <h3>FireX | Blaze</h3>
-        <p>Manager — Events & Player Support</p>
-      </div>
-      <div class="card">
-        <h3>🌊 Water Hashira</h3>
-        <p>Admin — Experienced Support Staff</p>
-      </div>
+  <header>
+    <img src="diama-logo.png" alt="Diama SMP Logo" />
+    <h1>Diama SMP</h1>
+    <p>20+ active players • 24/7 PaperMC • Version 1.21.6</p>
+    <div class="server-ip">
+      <span id="ipText">play.diamasmp.fun:25569</span>
+      <button onclick="copyIP()">Copy IP</button>
     </div>
-  </div>
 
-  <!-- === FEATURES === -->
-  <div id="features" class="section">
-    <div class="feature">🌐 Online 24/7</div>
-    <div class="feature">🛡️ Staff Support Available</div>
-    <div class="feature">⚔️ Thrilling Adventure</div>
-    <div class="feature">🧠 Team Strategy & Grind</div>
-    <div class="feature">🎁 Events & Rewards</div>
-  </div>
+    <nav>
+      <button class="tab active" onclick="showSection('roles', this)">Team Roles</button>
+      <button class="tab" onclick="showSection('features', this)">Features</button>
+      <button class="tab" onclick="showSection('rules', this)">Rules</button>
+      <button class="tab" onclick="showSection('reviews', this)">Crew Reviews</button>
+    </nav>
+  </header>
 
-  <!-- === RULES === -->
-  <div id="rules" class="section">
-    <div class="rules">
-      ✅ Respect everyone — abuse or hate speech will not be tolerated.<br><br>
-      ❌ No hacks, exploits or dupes. Evidence-based bans.<br><br>
-      🏠 No spawn killing or destructive griefing.<br><br>
-      ⚔️ PvP allowed — avoid unfair teaming in solo events.<br><br>
-      💬 Keep chat safe — no NSFW, doxxing, or targeted harassment.<br><br>
-      📛 Follow staff instructions. Appeals handled in Discord.
+  <!-- Team Roles -->
+  <section id="roles" class="active">
+    <h2>Team Roles</h2>
+    <div class="card-container">
+      <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative leadership</p></div>
+      <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
+      <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Backbone of SMP 💪</p></div>
     </div>
-  </div>
+    <div class="card-container">
+      <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
+      <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
+    </div>
+  </section>
 
-  <!-- === CREW REVIEWS === -->
-  <div id="reviews" class="section">
-    <div class="review"><b>Bhalutenx:</b> The ping is low, making exploration super smooth and fun. Perfect for survival and chill sessions with friends!</div>
-    <div class="review"><b>CookieDevil:</b> So much to enjoy! The community is friendly, the staff is supportive, and the SMP always feels alive with new adventures.</div>
-    <div class="review"><b>Itachi:</b> Not gonna lie, Shardex SMP might be bigger, but Diama has a cozy vibe and great players. The events are awesome too!</div>
-    <div class="review"><b>DiedGV:</b> What I love here is the honesty among players. Everyone grinds together, competes fairly, and it feels like a family.</div>
-  </div>
+  <!-- Features -->
+  <section id="features">
+    <h2>Server Features</h2>
+    <div class="features-grid">
+      <div>🌍 Online 24/7</div>
+      <div>🛡️ Staff Support Available</div>
+      <div>⚔️ Thrilling Adventure</div>
+      <div>🧠 Team Strategy & Grind</div>
+      <div>🎁 Events & Rewards</div>
+    </div>
+  </section>
 
-  <!-- === Discord Button === -->
-  <div class="discord-button">
-    <a href="https://discord.gg/2UVgQdTjRZ" target="_blank">Join Our Discord 💬</a>
-  </div>
+  <!-- Rules -->
+  <section id="rules">
+    <h2>Server Rules ⬇️</h2>
+    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;color:#ff8ecf;font-weight:600;">
+      <p>✅ <strong>Respect everyone</strong> — abuse or hate speech will not be tolerated.</p>
+      <p>❌ <strong>No hacks, exploits or dupes.</strong> Evidence-based bans.</p>
+      <p>🏠 <strong>No spawn killing or destructive griefing.</strong></p>
+      <p>⚔️ <strong>PvP allowed</strong> — avoid unfair teaming in solo events.</p>
+      <p>💬 <strong>Keep chat safe</strong> — no NSFW, doxxing, or targeted harassment.</p>
+      <p>📛 <strong>Follow staff instructions.</strong> Appeals handled in Discord.</p>
+    </div>
+  </section>
 
-  <!-- === Footer === -->
-  <div class="made-by">Made by <span>CookieDevil</span></div>
+  <!-- Crew Reviews -->
+  <section id="reviews">
+    <h2>Crew Reviews 💬</h2>
+    <div class="reviews">
+      <p><strong>Bhalutenx:</strong> The server runs with impressively low ping — every adventure feels smooth, and the world is so fun to explore!</p>
+      <p><strong>CookieDevil:</strong> There’s just too much to enjoy! Amazing community, supportive staff, and endless adventures — truly a place that feels like home for Minecraft lovers.</p>
+      <p><strong>Itachi:</strong> Shardex may be strong, but Diama SMP’s creativity, teamwork, and fairness make it hard to beat. It’s a battle of the best!</p>
+      <p><strong>DiedGV:</strong> My friends here are honest, dedicated, and loyal — that’s what keeps me coming back to Diama SMP every day.</p>
+    </div>
+  </section>
 
-  <!-- === SCRIPT === -->
+  <footer>
+    <a href="https://discord.gg/xKUUnA3z6Y" class="discord">Join Our Discord</a>
+  </footer>
+
   <script>
-    // Tab switching
-    function showSection(id, el) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    function showSection(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
+
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
 
-    // Petal animation generator
-    for (let i = 0; i < 25; i++) {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (8 + Math.random() * 5) + 's';
-      petal.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(petal);
+    function copyIP() {
+      navigator.clipboard.writeText("play.diamasmp.fun:25569");
+      alert("Server IP copied!");
     }
   </script>
+
 </body>
 </html>
