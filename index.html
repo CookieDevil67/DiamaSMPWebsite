@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Diama SMP Portal</title>
 <style>
+  /* === GLOBAL === */
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -117,12 +118,34 @@
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   }
 
+  footer {
+    margin: 40px 0;
+    z-index: 2;
+    position: relative;
+  }
+
+  .discord {
+    display: inline-block;
+    background: #5865f2;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .discord:hover {
+    background: #4752c4;
+    transform: scale(1.05);
+  }
+
+  /* === RULES SECTION COLOR === */
   #rules div {
     color: #ff8ecf;
     font-weight: 600;
   }
 
-  /* Floating petals */
+  /* === FLOATING PETALS === */
   .petal {
     position: fixed;
     top: -10px;
@@ -134,10 +157,17 @@
   }
 
   @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(720deg);
+      opacity: 0;
+    }
   }
 
+  /* === Made By CookieDevil === */
   .made-by {
     position: fixed;
     bottom: 15px;
@@ -164,33 +194,6 @@
   .made-by:hover span {
     color: #ff85b3;
   }
-
-  .discord-button {
-    position: fixed;
-    bottom: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #5865F2, #7289DA);
-    padding: 12px 25px;
-    border-radius: 30px;
-    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-
-  .discord-button:hover {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 0 25px rgba(88, 101, 242, 0.8);
-  }
-
-  .discord-button a {
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-  }
 </style>
 </head>
 
@@ -209,19 +212,20 @@
     <button onclick="showTab('reviews', this)">Crew Reviews</button>
   </nav>
 
-  <section id="rules">
-    <h2>Server Rules ⬇️</h2>
-    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;color:#ff8ecf;font-weight:600;">
-      <p>✅ <strong>Respect everyone</strong> — abuse or hate speech will not be tolerated.</p>
-      <p>❌ <strong>No hacks, exploits or dupes.</strong> Evidence-based bans.</p>
-      <p>🏠 <strong>No spawn killing or destructive griefing.</strong></p>
-      <p>⚔️ <strong>PvP allowed</strong> — avoid unfair teaming in solo events.</p>
-      <p>💬 <strong>Keep chat safe</strong> — no NSFW, doxxing, or targeted harassment.</p>
-      <p>📛 <strong>Follow staff instructions.</strong> Appeals handled in Discord.</p>
-    </div>
-  </section>
+  <!-- === RULES SECTION === -->
+ <section id="rules">
+  <h2>Server Rules ⬇️</h2>
+  <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;color:#ff8ecf;font-weight:600;">
+    <p>✅ <strong>Respect everyone</strong> — abuse or hate speech will not be tolerated.</p>
+    <p>❌ <strong>No hacks, exploits or dupes.</strong> Evidence-based bans.</p>
+    <p>🏠 <strong>No spawn killing or destructive griefing.</strong></p>
+    <p>⚔️ <strong>PvP allowed</strong> — avoid unfair teaming in solo events.</p>
+    <p>💬 <strong>Keep chat safe</strong> — no NSFW, doxxing, or targeted harassment.</p>
+    <p>📛 <strong>Follow staff instructions.</strong> Appeals handled in Discord.</p>
+  </div>
+</section>
 
-  <!-- === Crew Reviews === -->
+  <!-- === CREW REVIEWS SECTION === -->
   <section id="reviews">
     <h2>Crew Reviews</h2>
 
@@ -240,7 +244,7 @@
     </div>
   </section>
 
-  <!-- ✅ Only one Discord Button -->
+  <!-- === DISCORD BUTTON === -->
   <div class="discord-button">
     <a href="https://discord.gg/2UVgQdTjRZ" target="_blank">Join Our Discord 💬</a>
   </div>
@@ -261,7 +265,7 @@
     }
 
     // Faster, denser petals
-    const numPetals = 40;
+    const numPetals = 40; // increased from 20
     for (let i = 0; i < numPetals; i++) {
       const petal = document.createElement("div");
       petal.classList.add("petal");
@@ -269,10 +273,14 @@
       petal.style.width = `${size}px`;
       petal.style.height = `${size}px`;
       petal.style.left = `${Math.random() * 100}vw`;
-      petal.style.animationDuration = `${3 + Math.random() * 4}s`;
+      petal.style.animationDuration = `${3 + Math.random() * 4}s`; // faster fall
       petal.style.animationDelay = `${Math.random() * 3}s`;
       document.body.appendChild(petal);
     }
   </script>
+
+  <style>
+
+  </style>
 </body>
 </html>
