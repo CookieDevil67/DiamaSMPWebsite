@@ -26,6 +26,7 @@
   header img {
     width: 120px;
     border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   }
 
   h1 {
@@ -35,7 +36,7 @@
 
   .ip-box {
     display: inline-block;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     padding: 10px 20px;
     border-radius: 12px;
     margin-top: 15px;
@@ -44,7 +45,7 @@
   }
 
   .ip-box:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     transform: scale(1.05);
   }
 
@@ -145,18 +146,21 @@
     font-weight: 600;
   }
 
-  /* === FLOATING PETALS === */
-  .petal {
+  /* === FLOATING CRYSTALS === */
+  .crystal {
     position: fixed;
-    top: -10px;
-    background: rgba(255,192,203,0.8);
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: fall linear infinite;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #b1eaff, #ffbdf3);
+    border-radius: 3px;
+    opacity: 0.9;
+    box-shadow: 0 0 12px #bff;
+    animation: floatDown linear infinite;
     z-index: 1;
   }
 
-  @keyframes fall {
+  @keyframes floatDown {
     0% {
       transform: translateY(0) rotate(0deg);
       opacity: 1;
@@ -171,9 +175,9 @@
 
 <body>
   <header>
-    <img src="Diama logo.png" alt="Diama SMP Logo" />
+    <img src="DiamaLogo.png" alt="Diama SMP Logo" />
     <h1>Diama SMP</h1>
-    <p>20+ active players • 24/7 online PaperMC • Version 1.21.6 • Modern Minecraft Community</p>
+    <p>20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
     <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
   </header>
 
@@ -203,62 +207,61 @@
     <h2>Server Features</h2>
     <div class="card-container">
       <div class="card"><h3>🌍 Online 24/7</h3><p>Always available for grind and fun sessions.</p></div>
-      <div class="card"><h3>🛡️ Staff Support Available</h3><p>Active staff team to help players anytime.</p></div>
-      <div class="card"><h3>⚔️ Thrilling Adventure</h3><p>Engage in PvP battles and exploration events.</p></div>
+      <div class="card"><h3>🛡️ Staff Support</h3><p>Active staff to help players anytime.</p></div>
+      <div class="card"><h3>⚔️ Adventure</h3><p>Engage in PvP and exploration events.</p></div>
     </div>
     <div class="card-container">
-      <div class="card"><h3>🧠 Team Strategy & Grind</h3><p>Collaborate and build empires with friends.</p></div>
-      <div class="card"><h3>🎁 Events & Rewards</h3><p>Weekly competitions and prizes for top players.</p></div>
+      <div class="card"><h3>🧠 Strategy</h3><p>Collaborate and build empires.</p></div>
+      <div class="card"><h3>🎁 Events</h3><p>Weekly competitions and rewards.</p></div>
     </div>
   </section>
 
   <!-- === RULES SECTION === -->
+  <section id="rules">
+    <h2>Server Rules ⬇️</h2>
+    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
+      <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
+      <p>❌ <strong>No hacks or exploits.</strong></p>
+      <p>🏠 <strong>No spawn killing or griefing.</strong></p>
+      <p>⚔️ <strong>Fair PvP only.</strong></p>
+      <p>💬 <strong>Keep chat clean and safe.</strong></p>
+      <p>📛 <strong>Follow staff instructions.</strong></p>
+    </div>
+  </section>
 
-<section id="rules">
-  <h2>Server Rules ⬇️</h2>
-  <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;color:#ff8ecf;font-weight:600;">
-    <p>✅ <strong>Respect everyone</strong> — abuse or hate speech will not be tolerated.</p>
-    <p>❌ <strong>No hacks, exploits or dupes.</strong> Evidence-based bans.</p>
-    <p>🏠 <strong>No spawn killing or destructive griefing.</strong></p>
-    <p>⚔️ <strong>PvP allowed</strong> — avoid unfair teaming in solo events.</p>
-    <p>💬 <strong>Keep chat safe</strong> — no NSFW, doxxing, or targeted harassment.</p>
-    <p>📛 <strong>Follow staff instructions.</strong> Appeals handled in Discord.</p>
-  </div>
-</section>
-
-  <!-- === CREW REVIEWS SECTION === -->
+  <!-- === REVIEWS SECTION === -->
   <section id="reviews">
     <h2>Crew Reviews</h2>
     <div class="card-container">
       <div class="card">
         <h3>Bhalutenx</h3>
-        <p>The server runs on low ping and feels super smooth. It's fun to explore and grind with friends every day!</p>
+        <p>Low ping and smooth gameplay. Great for survival fun!</p>
       </div>
       <div class="card">
         <h3>CookieDevil</h3>
-        <p>There’s too much to enjoy here! The supportive staff makes it even better. Every session is filled with fun, challenges, and teamwork. I love how organized everything is — truly one of the best SMPs to play!</p>
+        <p>Friendly community, active staff, and exciting adventures every day!</p>
       </div>
     </div>
     <div class="card-container">
       <div class="card">
         <h3>Itachi</h3>
-        <p>I play mostly on Shardex, but Diama SMP has something unique. The players are chill, the builds amazing, and the vibes unmatched. It’s competitive, fun, and feels like a community every time I join.</p>
+        <p>Diama SMP feels like a true Minecraft family — chill and competitive at once!</p>
       </div>
       <div class="card">
         <h3>DiedGV</h3>
-        <p>What I love most here is honesty — my friends and teammates always have my back. It’s rare to find such genuine people in an SMP. The grind feels worth it every time.</p>
+        <p>Honesty and teamwork — every grind session feels worth it here.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <a href="https://discord.gg/xKUUnA3z6Y" class="discord" target="_blank">Join Our Discord 💬</a>
+    <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">Join Our Discord 💬</a>
   </footer>
 
   <script>
     function copyIP() {
       navigator.clipboard.writeText("play.diamasmp.fun:25569");
-      alert("IP copied to clipboard!");
+      alert("✅ IP copied to clipboard!");
     }
 
     function showTab(tab, btn) {
@@ -268,18 +271,18 @@
       btn.classList.add("active");
     }
 
-    // Petal generation for background
-    const numPetals = 20;
-    for (let i = 0; i < numPetals; i++) {
-      const petal = document.createElement("div");
-      petal.classList.add("petal");
-      const size = Math.random() * 8 + 5;
-      petal.style.width = `${size}px`;
-      petal.style.height = `${size}px`;
-      petal.style.left = `${Math.random() * 100}vw`;
-      petal.style.animationDuration = `${6 + Math.random() * 6}s`;
-      petal.style.animationDelay = `${Math.random() * 5}s`;
-      document.body.appendChild(petal);
+    // Crystal particle background
+    const numCrystals = 25;
+    for (let i = 0; i < numCrystals; i++) {
+      const crystal = document.createElement("div");
+      crystal.classList.add("crystal");
+      const size = Math.random() * 10 + 4;
+      crystal.style.width = `${size}px`;
+      crystal.style.height = `${size}px`;
+      crystal.style.left = `${Math.random() * 100}vw`;
+      crystal.style.animationDuration = `${6 + Math.random() * 6}s`;
+      crystal.style.animationDelay = `${Math.random() * 4}s`;
+      document.body.appendChild(crystal);
     }
   </script>
 </body>
