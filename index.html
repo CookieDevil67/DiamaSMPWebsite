@@ -235,7 +235,7 @@
     </div>
   </section>
 
-  <!-- === RULES === -->
+  <!-- === RULES (5 items) === -->
   <section id="rules">
     <h2>SERVER RULES</h2>
     <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
@@ -243,7 +243,6 @@
       <p>❌ <strong>No hacks or exploits.</strong></p>
       <p>🏠 <strong>No spawn killing or griefing.</strong></p>
       <p>⚔️ <strong>Fair PvP only.</strong></p>
-      <p>💬 <strong>Keep chat clean and safe.</strong></p>
       <p>📛 <strong>Follow staff instructions.</strong></p>
     </div>
   </section>
@@ -306,7 +305,7 @@
         next.classList.add("active");
 
         allButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+        if (btn) btn.classList.add("active");
 
         allButtons.forEach(b => b.disabled = false);
       }, 300);
@@ -325,6 +324,14 @@
       p.style.animationDelay = `${Math.random() * 5}s`;
       document.body.appendChild(p);
     }
+
+    // Ensure initial section visibility (helps on some hosts)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('section').forEach(s => {
+        if (s.classList.contains('active')) s.style.display = 'block';
+        else s.style.display = 'none';
+      });
+    });
   </script>
 </body>
 </html>
