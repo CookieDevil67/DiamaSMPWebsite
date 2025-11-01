@@ -1,328 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Diama SMP Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    color: #fff;
-    text-align: center;
-    overflow-x: hidden;
-    background: radial-gradient(circle at top, #0e1a2b, #030b14 90%);
-    position: relative;
+<script>
+  function copyIP() {
+    navigator.clipboard.writeText("play.diamasmp.fun:25569");
+    alert("✅ IP copied to clipboard!");
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 30% 20%, rgba(0,255,180,0.15), transparent 60%),
-      radial-gradient(circle at 70% 80%, rgba(0,180,255,0.15), transparent 60%),
-      radial-gradient(circle at 50% 50%, rgba(180,0,255,0.1), transparent 70%);
-    animation: zephyrMove 10s infinite alternate ease-in-out;
-    z-index: 0;
-  }
+  // Tab switch + fade animation fix
+  const buttons = document.querySelectorAll("nav button");
+  const sections = document.querySelectorAll("section");
 
-  @keyframes zephyrMove {
-    0% { background-position: 30% 20%, 70% 80%, 50% 50%; }
-    100% { background-position: 40% 25%, 65% 75%, 45% 55%; }
-  }
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const targetTab = button.getAttribute("data-tab");
+      const targetSection = document.getElementById(targetTab);
 
-  h1, h2 {
-    font-family: "Press Start 2P", cursive;
-    text-shadow: 0 0 10px #00ffcc, 0 0 25px #0099ff;
-    color: #affff9;
-  }
+      // Remove active class from buttons
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
 
-  header {
-    padding: 60px 20px 30px;
-    position: relative;
-    z-index: 2;
-  }
-
-  header img {
-    width: 120px;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(0,255,255,0.6);
-  }
-
-  h1 {
-    font-size: 2em;
-    margin: 15px 0;
-  }
-
-  p {
-    color: #d0faff;
-    font-size: 1em;
-  }
-
-  .ip-box {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(0,255,180,0.25), rgba(0,100,255,0.25));
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0,255,255,0.3);
-    font-family: "Press Start 2P";
-    font-size: 0.7em;
-    color: #affff9;
-    transition: 0.3s;
-  }
-
-  .ip-box:hover {
-    background: linear-gradient(135deg, rgba(0,255,180,0.45), rgba(0,100,255,0.45));
-    transform: scale(1.07);
-    box-shadow: 0 0 25px #00ffff;
-  }
-
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 40px 0;
-  }
-
-  nav button {
-    background: linear-gradient(135deg, #00ffb7, #009dff);
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 10px;
-    font-size: 0.7em;
-    font-family: "Press Start 2P";
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 15px rgba(0,255,255,0.4);
-  }
-
-  nav button:hover {
-    background: linear-gradient(135deg, #33ffcc, #33aaff);
-    transform: scale(1.1);
-    box-shadow: 0 0 25px #00ffff;
-  }
-
-  nav button.active {
-    background: linear-gradient(135deg, #00ffcc, #00aaff);
-    box-shadow: 0 0 25px #00ffff;
-  }
-
-  /* === Fade Sections === */
-  section {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-  }
-
-  section.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 20px;
-  }
-
-  .card {
-    background: rgba(255,255,255,0.05);
-    border: 2px solid rgba(0,255,200,0.2);
-    border-radius: 10px;
-    padding: 20px;
-    width: 260px;
-    box-shadow: 0 0 20px rgba(0,255,255,0.2);
-    transition: 0.3s;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 30px #00ffcc;
-  }
-
-  .card h3 {
-    font-family: "Press Start 2P";
-    font-size: 0.7em;
-    color: #affff9;
-  }
-
-  .card p {
-    color: #d7ffff;
-    font-size: 0.9em;
-  }
-
-  footer {
-    margin: 60px 0;
-  }
-
-  .discord {
-    display: inline-block;
-    background: linear-gradient(135deg, #5865f2, #3a45c9);
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-family: "Press Start 2P";
-    font-size: 0.7em;
-    transition: 0.3s;
-    box-shadow: 0 0 25px #5865f2;
-  }
-
-  .discord:hover {
-    background: #4752c4;
-    transform: scale(1.1);
-  }
-
-  .particle {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    background: #00ffcc;
-    box-shadow: 0 0 10px #00ffcc;
-    opacity: 0.6;
-    animation: float linear infinite;
-    z-index: 0;
-  }
-
-  @keyframes float {
-    from { transform: translateY(100vh) scale(0.5); opacity: 0.6; }
-    to { transform: translateY(-10vh) scale(1); opacity: 0; }
-  }
-</style>
-</head>
-
-<body>
-  <header>
-    <img src="PFPDIAMA.png" alt="Diama SMP Logo" />
-    <h1>DIAMA SMP</h1>
-    <p>20+ Active Players • 24/7 Online • Version 1.21.6</p>
-    <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
-  </header>
-
-  <nav>
-    <button class="active" data-tab="roles">TEAM ROLES</button>
-    <button data-tab="features">FEATURES</button>
-    <button data-tab="rules">RULES</button>
-    <button data-tab="reviews">REVIEWS</button>
-    <button data-tab="shop">SHOP</button>
-  </nav>
-
-  <section id="roles" class="active">
-    <h2>TEAM ROLES</h2>
-    <div class="card-container">
-      <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
-      <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
-      <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Backbone of SMP 💪</p></div>
-    </div>
-    <div class="card-container">
-      <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
-      <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
-    </div>
-  </section>
-
-  <section id="features">
-    <h2>SERVER FEATURES</h2>
-    <div class="card-container">
-      <div class="card"><h3>🌍 Always Online</h3><p>24/7 uptime for grind and fun.</p></div>
-      <div class="card"><h3>🛡️ Active Staff</h3><p>Dedicated team for player support.</p></div>
-      <div class="card"><h3>⚔️ Adventure</h3><p>Fight, explore, and thrive together.</p></div>
-    </div>
-  </section>
-
-  <section id="rules">
-    <h2>SERVER RULES</h2>
-    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
-      <p>✅ Respect everyone — no hate speech or toxicity.</p>
-      <p>❌ No hacks or exploits.</p>
-      <p>🏠 No spawn killing or griefing.</p>
-      <p>⚔️ Fair PvP only.</p>
-      <p>💬 Keep chat clean and safe.</p>
-      <p>📛 Follow staff instructions.</p>
-    </div>
-  </section>
-
-  <section id="reviews">
-    <h2>CREW REVIEWS</h2>
-    <div class="card-container">
-      <div class="card"><h3>Bhalutenx</h3><p>Low ping, fun gameplay, and chill people!</p></div>
-      <div class="card"><h3>CookieDevil</h3><p>Events, rewards, and friendly community!</p></div>
-      <div class="card"><h3>Itachi</h3><p>Community feels real — SMP vibes 💎</p></div>
-    </div>
-  </section>
-
-  <section id="shop">
-    <h2>🛒 SMP SHOP</h2>
-    <div class="card-container">
-      <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
-      <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
-      <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
-      <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
-      <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
-      <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
-    </div>
-    <p style="margin-top:20px;color:#affff9;">🕓 No refunds once bought.</p>
-  </section>
-
-  <footer>
-    <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">JOIN DISCORD 💬</a>
-  </footer>
-
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("play.diamasmp.fun:25569");
-      alert("✅ IP copied to clipboard!");
-    }
-
-    // Fade transition between sections
-    const buttons = document.querySelectorAll("nav button");
-    const sections = document.querySelectorAll("section");
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.getAttribute("data-tab");
-        const activeSection = document.querySelector("section.active");
-        const newSection = document.getElementById(target);
-
-        if (activeSection === newSection) return;
-
-        buttons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        activeSection.classList.remove("active");
-        setTimeout(() => {
-          newSection.classList.add("active");
-        }, 100);
+      // Fade out current active section
+      sections.forEach(sec => {
+        if (sec.classList.contains("active")) {
+          sec.classList.remove("active");
+          sec.classList.add("fade-out");
+          setTimeout(() => {
+            sec.classList.remove("fade-out");
+          }, 600);
+        }
       });
-    });
 
-    // Floating particles
-    const count = 25;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement("div");
-      p.classList.add("particle");
-      const size = Math.random() * 8 + 4;
-      p.style.width = `${size}px`;
-      p.style.height = `${size}px`;
-      p.style.left = `${Math.random() * 100}vw`;
-      p.style.animationDuration = `${8 + Math.random() * 8}s`;
-      p.style.animationDelay = `${Math.random() * 5}s`;
-      p.style.background = ["#00ffcc", "#00aaff", "#00ffaa"][Math.floor(Math.random()*3)];
-      document.body.appendChild(p);
-    }
-  </script>
-</body>
-</html>
+      // Wait for fade-out to finish, then show new section
+      setTimeout(() => {
+        sections.forEach(sec => sec.classList.remove("active"));
+        targetSection.classList.add("active");
+      }, 200);
+    });
+  });
+
+  // Floating particles
+  const count = 25;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement("div");
+    p.classList.add("particle");
+    const size = Math.random() * 8 + 4;
+    p.style.width = `${size}px`;
+    p.style.height = `${size}px`;
+    p.style.left = `${Math.random() * 100}vw`;
+    p.style.animationDuration = `${8 + Math.random() * 8}s`;
+    p.style.animationDelay = `${Math.random() * 5}s`;
+    p.style.background = ["#00ffcc", "#00aaff", "#00ffaa"][Math.floor(Math.random() * 3)];
+    document.body.appendChild(p);
+  }
+</script>
