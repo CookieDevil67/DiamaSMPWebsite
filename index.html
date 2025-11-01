@@ -1,216 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diama SMP Portal</title>
-  <style>
-    /* === GLOBAL STYLES === */
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diama SMP Portal</title>
+<style>
+  /* === GLOBAL THEME (MINECRAFT + ZEPHYR GAMING VIBE) === */
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #031B34, #010C1A);
-      color: #E0F7FA;
-      margin: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle at top, #0d1b2a, #000814 70%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+  }
 
-    header {
-      text-align: center;
-      padding: 36px 20px 12px;
-      z-index: 2;
-    }
+  h1, h2 {
+    font-family: "Press Start 2P", cursive;
+    text-shadow: 0 0 15px #00ffff, 0 0 30px rgba(0, 255, 255, 0.5);
+    color: #00ffff;
+  }
 
-    header img {
-      width: 110px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00E5FF55;
-    }
+  header {
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 2;
+  }
 
-    h1, h2 {
-      text-align: center;
-      color: #00E5FF;
-      text-shadow: 0 0 10px #00E5FF;
-      letter-spacing: 1px;
-      font-family: 'Press Start 2P', cursive;
-    }
+  header img {
+    width: 130px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  }
 
-    p.lead {
-      text-align: center;
-      color: #BEEFFF;
-      margin-top: 8px;
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
+  h1 {
+    font-size: 2em;
+    margin: 15px 0;
+    font-weight: 800;
+  }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 12px 16px;
-      z-index: 2;
-    }
+  p {
+    color: #c8f6ff;
+    font-size: 1em;
+  }
 
-    nav button {
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(90deg, #00E5FF, #00FFA3);
-      color: #001a2c;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00E5FF;
-      transition: all 0.22s ease;
-    }
+  /* === IP BOX === */
+  .ip-box {
+    display: inline-block;
+    background: rgba(0, 255, 255, 0.15);
+    padding: 12px 25px;
+    border-radius: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transition: 0.3s;
+    font-weight: 600;
+    color: #00ffff;
+  }
 
-    nav button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 18px #00FFA3;
-    }
+  .ip-box:hover {
+    background: rgba(0, 255, 255, 0.3);
+    transform: scale(1.07);
+    box-shadow: 0 0 25px #00ffff;
+  }
 
-    nav button.active {
-      background: linear-gradient(90deg, #007bff, #00ffaa);
-      color: white;
-      box-shadow: 0 0 20px #00FFA3;
-    }
+  /* === NAVIGATION === */
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 40px 0;
+  }
 
-    /* === SECTIONS === */
-    section {
-      display: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.32s ease, transform 0.32s ease;
-      padding: 20px;
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
+  nav button {
+    background: linear-gradient(135deg, #00c6ff, #0077ff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.4);
+    font-family: "Press Start 2P", cursive;
+  }
 
-    section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+  nav button:hover {
+    background: linear-gradient(135deg, #00ffff, #00ff88);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ffff;
+  }
 
-    .fade-out {
-      opacity: 0;
-      transform: translateY(10px);
-    }
+  nav button.active {
+    background: linear-gradient(135deg, #00ffaa, #00ffff);
+    box-shadow: 0 0 25px #00ffaa;
+  }
 
-    /* === CARD GRID === */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      max-width: 980px;
-      margin: 26px auto;
-      padding: 0 16px;
-    }
+  /* === SECTIONS (WITH FADE EFFECT) === */
+  section {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+  }
 
-    .card {
-      background: rgba(0, 20, 40, 0.72);
-      border: 1px solid #00E5FF33;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 0 18px #00E5FF33;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-      text-align: left;
-    }
+  section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .card h3 {
-      margin: 0 0 8px 0;
-      color: #A8FFFF;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 14px;
-    }
+  .fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 
-    .card p {
-      margin: 0;
-      color: #DFF9FF;
-      font-size: 13px;
-      line-height: 1.4;
-    }
+  /* === CARDS === */
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+  }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 28px #00E5FF66;
-    }
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    width: 260px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+    transition: 0.3s;
+  }
 
-    /* === PARTICLES === */
-    .particle {
-      position: fixed;
-      top: -10vh;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      opacity: 0.9;
-      animation: fall linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #00ffff;
+  }
 
-    @keyframes fall {
-      0% { transform: translateY(-10vh) scale(0.9); opacity: 1; }
-      100% { transform: translateY(110vh) scale(1.2); opacity: 0; }
-    }
+  /* === SHOP === */
+  #shop .card {
+    background: linear-gradient(180deg, rgba(0,255,200,0.15), rgba(0,0,0,0.3));
+  }
+  #shop h3 { color: #9fffd8; }
+  #shop p { color: #d7ffff; }
 
-    /* === IP button === */
-    .ip-button {
-      display: inline-block;
-      background: linear-gradient(90deg, #00FFA3, #00E5FF);
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-size: 13px;
-      color: #001a2c;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: 0 0 14px #00FFA3;
-      margin-top: 10px;
-    }
+  /* === FOOTER (DISCORD BUTTON) === */
+  footer {
+    margin: 50px 0;
+  }
 
-    .ip-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 26px #00FFA3;
-    }
+  .discord {
+    display: inline-block;
+    background: linear-gradient(135deg, #5865f2, #3a45c9);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 25px #5865f2;
+  }
 
-    footer {
-      margin: 36px 0 60px;
-      text-align: center;
-    }
+  .discord:hover {
+    background: #4752c4;
+    transform: scale(1.1);
+  }
 
-    .discord {
-      display: inline-block;
-      background: linear-gradient(135deg, #5865f2, #3a45c9);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      box-shadow: 0 0 18px #5865f2;
-    }
+  /* === FLOATING PARTICLES (ZEPHYR EFFECT) === */
+  .particle {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,255,0.8), transparent);
+    opacity: 0.6;
+    animation: float linear infinite;
+    z-index: 0;
+  }
 
-    .discord:hover {
-      transform: translateY(-4px);
-    }
-
-    /* small-screen tweaks */
-    @media (max-width: 520px) {
-      nav button { padding: 8px 10px; font-size: 11px; }
-      .card h3 { font-size: 12px; }
-      .card p { font-size: 12px; }
-    }
-  </style>
+  @keyframes float {
+    from { transform: translateY(100vh) scale(0.5); opacity: 0.6; }
+    to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+</style>
 </head>
-<body>
 
+<body>
   <header>
     <img src="PFPDIAMA.png" alt="Diama SMP Logo" />
     <h1>Diama SMP</h1>
-    <p class="lead">20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
-    <div class="ip-button" onclick="copyIP()">📋 Copy Server IP</div>
+    <p>20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
+    <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
   </header>
 
   <nav>
@@ -224,75 +214,54 @@
   <!-- === ROLES === -->
   <section id="roles" class="active">
     <h2>TEAM ROLES</h2>
-    <div class="card-grid">
-      <div class="card"><h3>∫ GAMER ⚔️ AFFAN ∫</h3><p>Owner — Server foundation & direction</p></div>
-      <div class="card"><h3>∫ CAPTAIN ⚒️ RAFAY ∫</h3><p>Backbone of SMP 💪</p></div>
+    <div class="card-container">
+      <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
+      <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
+      <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Backbone of SMP 💪</p></div>
+    </div>
+    <div class="card-container">
       <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
-      <div class="card"><h3>☯ Water Hashira</h3><p>Admin — Experienced Staff & Support</p></div>
+      <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
     </div>
   </section>
 
-  <!-- === FEATURES (6 ITEMS) === -->
+  <!-- === FEATURES === -->
   <section id="features">
     <h2>FEATURES</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>🏕 Survival Economy</h3>
-        <p>Balanced shop, fair trading, and economy systems that reward effort without pay-to-win mechanics.</p>
-      </div>
-
-      <div class="card">
-        <h3>⚔️ PvP Arenas</h3>
-        <p>Dedicated arenas for duels and team matches so PvP stays fair and organized.</p>
-      </div>
-
-      <div class="card">
-        <h3>🎨 Custom Plugins</h3>
-        <p>Unique features and quality-of-life plugins that add freshness while keeping core Minecraft fun.</p>
-      </div>
-
-      <div class="card">
-        <h3>🌎 Land Claim System</h3>
-        <p>Easy-to-use claims to protect builds from griefing while allowing community growth.</p>
-      </div>
-
-      <div class="card">
-        <h3>🐉 Seasonal Events</h3>
-        <p>Themed events, server-wide bosses, and rewards to keep the community engaged all year round.</p>
-      </div>
-
-      <div class="card">
-        <h3>🏰 Player Towns & Community</h3>
-        <p>Town systems for players to create shared bases, economies, and social hubs — teamwork encouraged.</p>
-      </div>
+    <div class="card-container">
+      <div class="card"><h3>🌍 24/7 Server</h3><p>Always available for grind and fun sessions.</p></div>
+      <div class="card"><h3>🛡️ Active Staff</h3><p>Helpful team ready anytime.</p></div>
+      <div class="card"><h3>⚔️ PvP Adventures</h3><p>Battle, raid and explore together.</p></div>
     </div>
   </section>
 
   <!-- === RULES === -->
   <section id="rules">
     <h2>SERVER RULES</h2>
-    <div class="card-grid">
-      <div class="card"><h3>1️⃣ Be Respectful</h3><p>No griefing, hacking, or toxicity.</p></div>
-      <div class="card"><h3>2️⃣ Fair Play</h3><p>No cheats or unfair mods allowed.</p></div>
-      <div class="card"><h3>3️⃣ Have Fun!</h3><p>Play fair, stay chill, and enjoy the SMP world!</p></div>
+    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
+      <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
+      <p>❌ <strong>No hacks or exploits.</strong></p>
+      <p>🏠 <strong>No spawn killing or griefing.</strong></p>
+      <p>⚔️ <strong>Fair PvP only.</strong></p>
+      <p>💬 <strong>Keep chat clean and safe.</strong></p>
+      <p>📛 <strong>Follow staff instructions.</strong></p>
     </div>
   </section>
 
   <!-- === REVIEWS === -->
   <section id="reviews">
-    <h2>PLAYER REVIEWS</h2>
-    <div class="card-grid">
-      <div class="card"><p>"Best SMP I've ever joined — great staff!"</p></div>
-      <div class="card"><p>"Love the custom events and fair play!"</p></div>
-      <div class="card"><p>"Community vibes are amazing — feels like home!"</p></div>
+    <h2>CREW REVIEWS</h2>
+    <div class="card-container">
+      <div class="card"><h3>Bhalutenx</h3><p>Low ping, fun to explore, great player interaction.</p></div>
+      <div class="card"><h3>CookieDevil</h3><p>Friendly staff, active gameplay, and fun events.</p></div>
+      <div class="card"><h3>Itachi</h3><p>Lively and loyal community — love it here!</p></div>
     </div>
   </section>
 
   <!-- === SHOP === -->
   <section id="shop">
-    <h2>SHOP & SUPPORT</h2>
-    <p style="max-width:800px;margin:10px auto 18px;">Support the SMP and unlock cool perks. All purchases are final — please be patient when redeeming.</p>
-    <div class="card-grid" style="max-width:640px;margin:0 auto;">
+    <h2>🛒 DIAMA SMP SHOP</h2>
+    <div class="card-container">
       <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
       <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
       <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
@@ -300,25 +269,24 @@
       <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
       <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
     </div>
+    <p style="margin-top:20px;color:#9fffd8;">🕓 Requirements: Must have patience. No refunds once bought.</p>
   </section>
 
   <footer>
-    <a class="discord" href="https://discord.gg/2UVgQdTjRZ" target="_blank">Join Our Discord</a>
+    <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">Join Our Discord 💬</a>
   </footer>
 
+  <!-- === WORKING FADE + TAB SCRIPT === -->
   <script>
-    // Copy IP
     function copyIP() {
       navigator.clipboard.writeText("play.diamasmp.fun:25569");
       alert("✅ IP copied to clipboard!");
     }
 
-    // Smooth tab switching (GitHub Pages friendly)
     function showTab(tabId, btn) {
       const allSections = document.querySelectorAll("section");
       const allButtons = document.querySelectorAll("nav button");
 
-      // temporarily disable clicking
       allButtons.forEach(b => b.disabled = true);
 
       const current = document.querySelector("section.active");
@@ -334,46 +302,29 @@
         });
 
         const next = document.getElementById(tabId);
-        if (next) {
-          next.style.display = "block";
-          // force reflow for transition reliability
-          void next.offsetWidth;
-          next.classList.add("active");
-        }
+        next.style.display = "block";
+        next.classList.add("active");
 
         allButtons.forEach(b => b.classList.remove("active"));
-        if (btn) btn.classList.add("active");
+        btn.classList.add("active");
 
         allButtons.forEach(b => b.disabled = false);
-      }, 320); // matches CSS transition timing
+      }, 300);
     }
 
-    // Particles for Zephyr vibe
-    const count = 22;
+    // Floating particles
+    const count = 25;
     for (let i = 0; i < count; i++) {
       const p = document.createElement("div");
-      p.className = 'particle';
+      p.classList.add("particle");
       const size = Math.random() * 8 + 4;
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
       p.style.left = `${Math.random() * 100}vw`;
-      p.style.background = ["#00E5FF", "#00FFA3", "#007bff"][Math.floor(Math.random() * 3)];
       p.style.animationDuration = `${8 + Math.random() * 8}s`;
-      p.style.top = `${-Math.random() * 20}vh`;
-      p.style.opacity = 0.8;
+      p.style.animationDelay = `${Math.random() * 5}s`;
       document.body.appendChild(p);
     }
-
-    // Ensure initial active section is visible (for some hosts)
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('section').forEach(s => {
-        if (s.classList.contains('active')) {
-          s.style.display = 'block';
-        } else {
-          s.style.display = 'none';
-        }
-      });
-    });
   </script>
 </body>
 </html>
