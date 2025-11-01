@@ -6,8 +6,10 @@
   <title>Diama SMP Portal</title>
   <style>
     /* === GLOBAL STYLES === */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
+
     body {
-      font-family: 'Press Start 2P', cursive;
+      font-family: 'Poppins', sans-serif;
       background: radial-gradient(circle at top, #031B34, #010C1A);
       color: #E0F7FA;
       margin: 0;
@@ -15,11 +17,32 @@
       min-height: 100vh;
     }
 
+    header {
+      text-align: center;
+      padding: 36px 20px 12px;
+      z-index: 2;
+    }
+
+    header img {
+      width: 110px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00E5FF55;
+    }
+
     h1, h2 {
       text-align: center;
       color: #00E5FF;
       text-shadow: 0 0 10px #00E5FF;
       letter-spacing: 1px;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    p.lead {
+      text-align: center;
+      color: #BEEFFF;
+      margin-top: 8px;
+      margin-bottom: 14px;
+      font-weight: 600;
     }
 
     nav {
@@ -27,7 +50,8 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      padding: 20px;
+      padding: 12px 16px;
+      z-index: 2;
     }
 
     nav button {
@@ -39,12 +63,12 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 0 10px #00E5FF;
-      transition: all 0.3s ease;
+      transition: all 0.22s ease;
     }
 
     nav button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00FFA3;
+      transform: translateY(-4px);
+      box-shadow: 0 0 18px #00FFA3;
     }
 
     nav button.active {
@@ -58,7 +82,7 @@
       display: none;
       opacity: 0;
       transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: opacity 0.32s ease, transform 0.32s ease;
       padding: 20px;
       position: relative;
       z-index: 2;
@@ -76,72 +100,118 @@
       transform: translateY(10px);
     }
 
-    /* === CARDS === */
+    /* === CARD GRID === */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
-      max-width: 900px;
-      margin: 30px auto;
+      max-width: 980px;
+      margin: 26px auto;
+      padding: 0 16px;
     }
 
     .card {
-      background: rgba(0, 20, 40, 0.7);
-      border: 1px solid #00E5FF;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 20px #00E5FF33;
-      transition: all 0.3s ease;
+      background: rgba(0, 20, 40, 0.72);
+      border: 1px solid #00E5FF33;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 0 18px #00E5FF33;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      text-align: left;
+    }
+
+    .card h3 {
+      margin: 0 0 8px 0;
+      color: #A8FFFF;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #DFF9FF;
+      font-size: 13px;
+      line-height: 1.4;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00E5FF77;
+      transform: translateY(-6px);
+      box-shadow: 0 0 28px #00E5FF66;
     }
 
     /* === PARTICLES === */
     .particle {
       position: fixed;
-      top: 0;
+      top: -10vh;
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      opacity: 0.7;
-      animation: float 10s linear infinite;
+      opacity: 0.9;
+      animation: fall linear infinite;
       pointer-events: none;
+      z-index: 0;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) scale(0.9); opacity: 1; }
+      100% { transform: translateY(110vh) scale(1.2); opacity: 0; }
     }
 
-    /* === COPY IP BUTTON === */
+    /* === IP button === */
     .ip-button {
       display: inline-block;
       background: linear-gradient(90deg, #00FFA3, #00E5FF);
       padding: 10px 18px;
       border-radius: 10px;
-      font-size: 12px;
+      font-size: 13px;
       color: #001a2c;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px #00FFA3;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 0 14px #00FFA3;
+      margin-top: 10px;
     }
 
     .ip-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00FFA3;
+      transform: translateY(-4px);
+      box-shadow: 0 0 26px #00FFA3;
+    }
+
+    footer {
+      margin: 36px 0 60px;
+      text-align: center;
+    }
+
+    .discord {
+      display: inline-block;
+      background: linear-gradient(135deg, #5865f2, #3a45c9);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 0 18px #5865f2;
+    }
+
+    .discord:hover {
+      transform: translateY(-4px);
+    }
+
+    /* small-screen tweaks */
+    @media (max-width: 520px) {
+      nav button { padding: 8px 10px; font-size: 11px; }
+      .card h3 { font-size: 12px; }
+      .card p { font-size: 12px; }
     }
   </style>
 </head>
 <body>
+
+  <header>
+    <img src="PFPDIAMA.png" alt="Diama SMP Logo" />
+    <h1>Diama SMP</h1>
+    <p class="lead">20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
+    <div class="ip-button" onclick="copyIP()">📋 Copy Server IP</div>
+  </header>
 
   <nav>
     <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
@@ -151,9 +221,9 @@
     <button onclick="showTab('shop', this)">SHOP</button>
   </nav>
 
-  <!-- === TEAM ROLES === -->
+  <!-- === ROLES === -->
   <section id="roles" class="active">
-    <h1>TEAM ROLES</h1>
+    <h2>TEAM ROLES</h2>
     <div class="card-grid">
       <div class="card"><h3>∫ GAMER ⚔️ AFFAN ∫</h3><p>Owner — Server foundation & direction</p></div>
       <div class="card"><h3>∫ CAPTAIN ⚒️ RAFAY ∫</h3><p>Backbone of SMP 💪</p></div>
@@ -162,22 +232,45 @@
     </div>
   </section>
 
-  <!-- === FEATURES === -->
+  <!-- === FEATURES (6 ITEMS) === -->
   <section id="features">
-    <h1>FEATURES</h1>
+    <h2>FEATURES</h2>
     <div class="card-grid">
-      <div class="card"><h3>🏕 Survival Economy</h3><p>Balanced shop, trading, and jobs — everything fair!</p></div>
-      <div class="card"><h3>⚔️ PvP Arenas</h3><p>Test your skills in duels or team battles.</p></div>
-      <div class="card"><h3>🎨 Custom Plugins</h3><p>Unique experiences beyond vanilla Minecraft.</p></div>
-      <div class="card"><h3>🌎 Land Claim System</h3><p>Protect your base with secure, easy-to-use claims.</p></div>
-      <div class="card"><h3>🐉 Seasonal Events</h3><p>Special themed events, boss fights, and competitions.</p></div>
-      <div class="card"><h3>🏰 Player Towns</h3><p>Form communities, trade, and build empires together.</p></div>
+      <div class="card">
+        <h3>🏕 Survival Economy</h3>
+        <p>Balanced shop, fair trading, and economy systems that reward effort without pay-to-win mechanics.</p>
+      </div>
+
+      <div class="card">
+        <h3>⚔️ PvP Arenas</h3>
+        <p>Dedicated arenas for duels and team matches so PvP stays fair and organized.</p>
+      </div>
+
+      <div class="card">
+        <h3>🎨 Custom Plugins</h3>
+        <p>Unique features and quality-of-life plugins that add freshness while keeping core Minecraft fun.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌎 Land Claim System</h3>
+        <p>Easy-to-use claims to protect builds from griefing while allowing community growth.</p>
+      </div>
+
+      <div class="card">
+        <h3>🐉 Seasonal Events</h3>
+        <p>Themed events, server-wide bosses, and rewards to keep the community engaged all year round.</p>
+      </div>
+
+      <div class="card">
+        <h3>🏰 Player Towns & Community</h3>
+        <p>Town systems for players to create shared bases, economies, and social hubs — teamwork encouraged.</p>
+      </div>
     </div>
   </section>
 
   <!-- === RULES === -->
   <section id="rules">
-    <h1>SERVER RULES</h1>
+    <h2>SERVER RULES</h2>
     <div class="card-grid">
       <div class="card"><h3>1️⃣ Be Respectful</h3><p>No griefing, hacking, or toxicity.</p></div>
       <div class="card"><h3>2️⃣ Fair Play</h3><p>No cheats or unfair mods allowed.</p></div>
@@ -187,7 +280,7 @@
 
   <!-- === REVIEWS === -->
   <section id="reviews">
-    <h1>PLAYER REVIEWS</h1>
+    <h2>PLAYER REVIEWS</h2>
     <div class="card-grid">
       <div class="card"><p>"Best SMP I've ever joined — great staff!"</p></div>
       <div class="card"><p>"Love the custom events and fair play!"</p></div>
@@ -197,10 +290,21 @@
 
   <!-- === SHOP === -->
   <section id="shop">
-    <h1>SHOP & SUPPORT</h1>
-    <p>Support the SMP and unlock cool perks!</p>
-    <div class="ip-button" onclick="copyIP()">📋 Copy Server IP</div>
+    <h2>SHOP & SUPPORT</h2>
+    <p style="max-width:800px;margin:10px auto 18px;">Support the SMP and unlock cool perks. All purchases are final — please be patient when redeeming.</p>
+    <div class="card-grid" style="max-width:640px;margin:0 auto;">
+      <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
+      <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
+      <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
+      <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
+      <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
+      <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
+    </div>
   </section>
+
+  <footer>
+    <a class="discord" href="https://discord.gg/2UVgQdTjRZ" target="_blank">Join Our Discord</a>
+  </footer>
 
   <script>
     // Copy IP
@@ -209,46 +313,67 @@
       alert("✅ IP copied to clipboard!");
     }
 
-    // Smooth tab switching
+    // Smooth tab switching (GitHub Pages friendly)
     function showTab(tabId, btn) {
       const allSections = document.querySelectorAll("section");
       const allButtons = document.querySelectorAll("nav button");
 
+      // temporarily disable clicking
       allButtons.forEach(b => b.disabled = true);
+
       const current = document.querySelector("section.active");
-      if (current) current.classList.add("fade-out");
+      if (current) {
+        current.classList.remove("active");
+        current.classList.add("fade-out");
+      }
 
       setTimeout(() => {
         allSections.forEach(sec => {
-          sec.classList.remove("active", "fade-out");
           sec.style.display = "none";
+          sec.classList.remove("active", "fade-out");
         });
 
         const next = document.getElementById(tabId);
-        next.style.display = "block";
-        next.classList.add("active");
+        if (next) {
+          next.style.display = "block";
+          // force reflow for transition reliability
+          void next.offsetWidth;
+          next.classList.add("active");
+        }
 
         allButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+        if (btn) btn.classList.add("active");
 
         allButtons.forEach(b => b.disabled = false);
-      }, 300);
+      }, 320); // matches CSS transition timing
     }
 
-    // Floating particles for Zephyr vibe
-    const count = 25;
+    // Particles for Zephyr vibe
+    const count = 22;
     for (let i = 0; i < count; i++) {
       const p = document.createElement("div");
-      p.classList.add("particle");
+      p.className = 'particle';
       const size = Math.random() * 8 + 4;
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
       p.style.left = `${Math.random() * 100}vw`;
       p.style.background = ["#00E5FF", "#00FFA3", "#007bff"][Math.floor(Math.random() * 3)];
       p.style.animationDuration = `${8 + Math.random() * 8}s`;
-      p.style.animationDelay = `${Math.random() * 5}s`;
+      p.style.top = `${-Math.random() * 20}vh`;
+      p.style.opacity = 0.8;
       document.body.appendChild(p);
     }
+
+    // Ensure initial active section is visible (for some hosts)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('section').forEach(s => {
+        if (s.classList.contains('active')) {
+          s.style.display = 'block';
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    });
   </script>
 </body>
 </html>
