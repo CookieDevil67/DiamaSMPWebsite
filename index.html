@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Diama SMP Portal</title>
 <style>
-  /* === GLOBAL === */
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -140,13 +139,11 @@
     transform: scale(1.05);
   }
 
-  /* === RULES SECTION COLOR === */
   #rules div {
     color: #ff8ecf;
     font-weight: 600;
   }
 
-  /* === FLOATING CRYSTALS === */
   .crystal {
     position: fixed;
     top: -20px;
@@ -161,21 +158,15 @@
   }
 
   @keyframes floatDown {
-    0% {
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(110vh) rotate(360deg);
-      opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
   }
 </style>
 </head>
 
 <body>
   <header>
-    <img src="PFPDIAMA.png" />
+    <img src="PFPDIAMA.png" alt="Diama SMP Logo" />
     <h1>Diama SMP</h1>
     <p>20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
     <div class="ip-box" onclick="copyIP()">play.diamasmp.fun:25569</div>
@@ -185,6 +176,7 @@
     <button class="active" onclick="showTab('roles', this)">Team Roles</button>
     <button onclick="showTab('features', this)">Features</button>
     <button onclick="showTab('rules', this)">Rules</button>
+    <button onclick="showTab('shop', this)">Shop</button>
     <button onclick="showTab('reviews', this)">Crew Reviews</button>
   </nav>
 
@@ -229,28 +221,47 @@
     </div>
   </section>
 
+  <!-- === SHOP SECTION === -->
+  <section id="shop">
+    <h2>🛒 Diama SMP Shop</h2>
+    <div class="card-container">
+      <div class="card"><h3>💎 ELITE</h3><p>550K OwO</p></div>
+      <div class="card"><h3>🔥 OMEGA</h3><p>400K OwO</p></div>
+      <div class="card"><h3>👑 IMMORTAL</h3><p>375K OwO</p></div>
+    </div>
+    <div class="card-container">
+      <div class="card"><h3>⚡ BOOSTER KIT</h3><p>350K OwO</p></div>
+      <div class="card"><h3>💥 ULTRA KIT</h3><p>250K OwO</p></div>
+      <div class="card"><h3>⭐ VIP KIT</h3><p>100K OwO</p></div>
+    </div>
+    <div style="margin-top: 20px; font-weight: 600; color: #ff8ecf;">
+      <p>📋 <strong>Requirements:</strong></p>
+      <p>• Must have patience</p>
+      <p>• No refunds once bought</p>
+    </div>
+  </section>
+
   <!-- === REVIEWS SECTION === -->
   <section id="reviews">
     <h2>Crew Reviews</h2>
     <div class="card-container">
       <div class="card">
         <h3>Bhalutenx</h3>
-        <p> Nice server I never feel bored</p>
+        <p>Nice server I never feel bored</p>
       </div>
       <div class="card">
         <h3>CookieDevil</h3>
-        <p>Good server any bugs are solved in a day without a chaos</p>
+        <p>Good server, any bugs are solved in a day without chaos</p>
       </div>
     </div>
     <div class="card-container">
       <div class="card">
         <h3>Real_Legit</h3>
-        <p>Har bar ki tarah hopes se 1 kadam aage
-        !</p>
+        <p>Har bar ki tarah hopes se 1 kadam aage!</p>
       </div>
       <div class="card">
         <h3>DiedGV</h3>
-        <p>Staff is loyal koi unfair advantage nhi deta kisiko</p>
+        <p>Staff is loyal — koi unfair advantage nahi deta kisiko</p>
       </div>
     </div>
   </section>
