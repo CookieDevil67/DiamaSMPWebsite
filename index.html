@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Diama SMP Portal</title>
 <style>
+  /* === GLOBAL THEME (ZEPHYR + GAMING VIBE) === */
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #93c9ff, #1a3f6b);
+    background: radial-gradient(circle at top, #b3e5fc, #1e3c72 80%);
     background-attachment: fixed;
     overflow-x: hidden;
     color: #fff;
     text-align: center;
     position: relative;
+  }
+
+  h1, h2 {
+    text-shadow: 0 0 10px #00eaff, 0 0 25px rgba(0, 255, 255, 0.3);
   }
 
   header {
@@ -23,68 +28,80 @@
   }
 
   header img {
-    width: 120px;
+    width: 130px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
   }
 
   h1 {
     font-size: 3em;
-    margin: 10px 0;
+    color: #ffffff;
+    margin: 15px 0;
+    font-weight: 800;
   }
 
+  p {
+    color: #e0f7ff;
+    font-size: 1.1em;
+  }
+
+  /* === IP BOX === */
   .ip-box {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
     border-radius: 12px;
     margin-top: 15px;
     cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     transition: 0.3s;
+    font-weight: 600;
   }
 
   .ip-box:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.05);
+    background: rgba(0, 255, 255, 0.25);
+    transform: scale(1.07);
+    box-shadow: 0 0 25px #00ffff;
   }
 
+  /* === NAVIGATION === */
   nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
     margin: 40px 0;
-    z-index: 2;
-    position: relative;
   }
 
   nav button {
-    background: rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, #a6e1ff, #00c6ff);
     color: white;
     border: none;
     padding: 10px 25px;
     border-radius: 12px;
     font-size: 1em;
     cursor: pointer;
+    font-weight: 600;
     transition: 0.3s;
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.5);
   }
 
   nav button:hover {
-    background: rgba(255, 192, 203, 0.5);
+    background: linear-gradient(135deg, #00eaff, #2af598);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ffff;
   }
 
   nav button.active {
-    background: rgba(255, 182, 193, 0.8);
-    box-shadow: 0 0 15px rgba(255, 192, 203, 0.8);
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #00ffcc, #1ad6ff);
+    box-shadow: 0 0 25px #1ad6ff;
   }
 
+  /* === SECTION STYLES === */
   section {
     display: none;
     padding: 20px;
     animation: fadeIn 0.4s ease;
-    position: relative;
-    z-index: 2;
   }
 
   section.active {
@@ -96,6 +113,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* === CARDS === */
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -105,61 +123,68 @@
   }
 
   .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(0,0,0,0.25));
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 20px;
     width: 260px;
+    box-shadow: 0 0 20px rgba(173, 255, 255, 0.3);
     transition: 0.3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 0 25px #00eaff;
   }
 
+  /* === RULES === */
+  #rules p {
+    color: #ff8bd9;
+    font-weight: 600;
+  }
+
+  /* === SHOP === */
+  #shop .card {
+    background: linear-gradient(180deg, rgba(0,255,200,0.15), rgba(0,0,0,0.3));
+  }
+  #shop h3 { color: #9fffd8; }
+  #shop p { color: #d7ffff; }
+
+  /* === DISCORD BUTTON === */
   footer {
-    margin: 40px 0;
-    z-index: 2;
-    position: relative;
+    margin: 50px 0;
   }
 
   .discord {
     display: inline-block;
-    background: #5865f2;
+    background: linear-gradient(135deg, #5865f2, #3a45c9);
     color: #fff;
     padding: 12px 25px;
     border-radius: 25px;
     text-decoration: none;
+    font-weight: 600;
     transition: 0.3s;
+    box-shadow: 0 0 25px #5865f2;
   }
 
   .discord:hover {
     background: #4752c4;
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 
-  #rules div {
-    color: #ff8ecf;
-    font-weight: 600;
-  }
-
-  .crystal {
+  /* === FLOATING PARTICLES (ZEPHYR EFFECT) === */
+  .particle {
     position: fixed;
-    top: -20px;
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(45deg, #b1eaff, #ffbdf3);
-    border-radius: 3px;
-    opacity: 0.9;
-    box-shadow: 0 0 12px #bff;
-    animation: floatDown linear infinite;
-    z-index: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, transparent);
+    opacity: 0.6;
+    animation: float linear infinite;
+    z-index: 0;
   }
 
-  @keyframes floatDown {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  @keyframes float {
+    from { transform: translateY(100vh) scale(0.5); opacity: 0.6; }
+    to { transform: translateY(-10vh) scale(1); opacity: 0; }
   }
 </style>
 </head>
@@ -176,8 +201,8 @@
     <button class="active" onclick="showTab('roles', this)">Team Roles</button>
     <button onclick="showTab('features', this)">Features</button>
     <button onclick="showTab('rules', this)">Rules</button>
-    <button onclick="showTab('shop', this)">Shop</button>
     <button onclick="showTab('reviews', this)">Crew Reviews</button>
+    <button onclick="showTab('shop', this)">Shop</button>
   </nav>
 
   <!-- === ROLES SECTION === -->
@@ -208,7 +233,7 @@
     </div>
   </section>
 
-  <!-- === RULES SECTION === -->
+  <!-- === RULES === -->
   <section id="rules">
     <h2>Server Rules ⬇️</h2>
     <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
@@ -221,49 +246,29 @@
     </div>
   </section>
 
-  <!-- === SHOP SECTION === -->
-  <section id="shop">
-    <h2>🛒 Diama SMP Shop</h2>
-    <div class="card-container">
-      <div class="card"><h3>💎 ELITE</h3><p>550K OwO</p></div>
-      <div class="card"><h3>🔥 OMEGA</h3><p>400K OwO</p></div>
-      <div class="card"><h3>👑 IMMORTAL</h3><p>375K OwO</p></div>
-    </div>
-    <div class="card-container">
-      <div class="card"><h3>⚡ BOOSTER KIT</h3><p>350K OwO</p></div>
-      <div class="card"><h3>💥 ULTRA KIT</h3><p>250K OwO</p></div>
-      <div class="card"><h3>⭐ VIP KIT</h3><p>100K OwO</p></div>
-    </div>
-    <div style="margin-top: 20px; font-weight: 600; color: #ff8ecf;">
-      <p>📋 <strong>Requirements:</strong></p>
-      <p>• Must have patience</p>
-      <p>• No refunds once bought</p>
-    </div>
-  </section>
-
-  <!-- === REVIEWS SECTION === -->
+  <!-- === REVIEWS === -->
   <section id="reviews">
     <h2>Crew Reviews</h2>
     <div class="card-container">
-      <div class="card">
-        <h3>Bhalutenx</h3>
-        <p>Nice server I never feel bored</p>
-      </div>
-      <div class="card">
-        <h3>CookieDevil</h3>
-        <p>Good server, any bugs are solved in a day without chaos</p>
-      </div>
+      <div class="card"><h3>Bhalutenx</h3><p>Low ping, fun to explore and great player interaction.</p></div>
+      <div class="card"><h3>CookieDevil</h3><p>So much to enjoy! Friendly staff, active gameplay, and events that make every day worth joining.</p></div>
+      <div class="card"><h3>Itachi</h3><p>Shardex may be my main, but Diama SMP has a community like no other — lively and loyal.</p></div>
+      <div class="card"><h3>DiedGV</h3><p>Friends here are honest and reliable — it’s what keeps the SMP strong!</p></div>
     </div>
+  </section>
+
+  <!-- === SHOP === -->
+  <section id="shop">
+    <h2>🛒 Diama SMP Shop</h2>
     <div class="card-container">
-      <div class="card">
-        <h3>Real_Legit</h3>
-        <p>Har bar ki tarah hopes se 1 kadam aage!</p>
-      </div>
-      <div class="card">
-        <h3>DiedGV</h3>
-        <p>Staff is loyal — koi unfair advantage nahi deta kisiko</p>
-      </div>
+      <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
+      <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
+      <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
+      <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
+      <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
+      <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
     </div>
+    <p style="margin-top:20px;color:#9fffd8;">🕓 Requirements: Must have patience. No refunds once bought.</p>
   </section>
 
   <footer>
@@ -271,11 +276,13 @@
   </footer>
 
   <script>
+    // Copy IP
     function copyIP() {
       navigator.clipboard.writeText("play.diamasmp.fun:25569");
       alert("✅ IP copied to clipboard!");
     }
 
+    // Tab switching
     function showTab(tab, btn) {
       document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
       document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
@@ -283,18 +290,18 @@
       btn.classList.add("active");
     }
 
-    // Crystal particle background
-    const numCrystals = 25;
-    for (let i = 0; i < numCrystals; i++) {
-      const crystal = document.createElement("div");
-      crystal.classList.add("crystal");
-      const size = Math.random() * 10 + 4;
-      crystal.style.width = `${size}px`;
-      crystal.style.height = `${size}px`;
-      crystal.style.left = `${Math.random() * 100}vw`;
-      crystal.style.animationDuration = `${6 + Math.random() * 6}s`;
-      crystal.style.animationDelay = `${Math.random() * 4}s`;
-      document.body.appendChild(crystal);
+    // Floating zephyr-like particles
+    const count = 25;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      const size = Math.random() * 8 + 4;
+      p.style.width = `${size}px`;
+      p.style.height = `${size}px`;
+      p.style.left = `${Math.random() * 100}vw`;
+      p.style.animationDuration = `${8 + Math.random() * 8}s`;
+      p.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(p);
     }
   </script>
 </body>
