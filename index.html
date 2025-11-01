@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Diama SMP Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
-  /* === GLOBAL THEME (MINECRAFT ZEPHYR STYLE) === */
   body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -18,7 +16,6 @@
     position: relative;
   }
 
-  /* animated zephyr energy waves */
   body::before {
     content: "";
     position: fixed;
@@ -64,7 +61,6 @@
     font-size: 1em;
   }
 
-  /* === IP BOX === */
   .ip-box {
     display: inline-block;
     background: linear-gradient(135deg, rgba(0,255,180,0.25), rgba(0,100,255,0.25));
@@ -85,7 +81,6 @@
     box-shadow: 0 0 25px #00ffff;
   }
 
-  /* === NAVIGATION === */
   nav {
     display: flex;
     justify-content: center;
@@ -118,7 +113,6 @@
     box-shadow: 0 0 25px #00ffff;
   }
 
-  /* === SECTIONS === */
   section {
     display: none;
     padding: 20px;
@@ -136,7 +130,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* === CARDS === */
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -171,7 +164,6 @@
     font-size: 0.9em;
   }
 
-  /* === DISCORD BUTTON === */
   footer {
     margin: 60px 0;
   }
@@ -194,7 +186,6 @@
     transform: scale(1.1);
   }
 
-  /* === FLOATING PIXEL PARTICLES (MINECRAFT ENERGY) === */
   .particle {
     position: fixed;
     width: 8px;
@@ -223,11 +214,11 @@
   </header>
 
   <nav>
-    <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
-    <button onclick="showTab('features', this)">FEATURES</button>
-    <button onclick="showTab('rules', this)">RULES</button>
-    <button onclick="showTab('reviews', this)">REVIEWS</button>
-    <button onclick="showTab('shop', this)">SHOP</button>
+    <button class="active" data-tab="roles">TEAM ROLES</button>
+    <button data-tab="features">FEATURES</button>
+    <button data-tab="rules">RULES</button>
+    <button data-tab="reviews">REVIEWS</button>
+    <button data-tab="shop">SHOP</button>
   </nav>
 
   <section id="roles" class="active">
@@ -297,15 +288,22 @@
       alert("✅ IP copied to clipboard!");
     }
 
-    // Tab switching
-    function showTab(tab, btn) {
-      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-      document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-      document.getElementById(tab).classList.add("active");
-      btn.classList.add("active");
-    }
+    // Tab switching (FIXED VERSION)
+    const buttons = document.querySelectorAll("nav button");
+    const sections = document.querySelectorAll("section");
 
-    // Floating zephyr particles
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-tab");
+        sections.forEach(sec => sec.classList.remove("active"));
+        document.getElementById(target).classList.add("active");
+
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    // Floating particles
     const count = 25;
     for (let i = 0; i < count; i++) {
       const p = document.createElement("div");
